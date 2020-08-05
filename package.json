@@ -1,0 +1,29 @@
+{
+  "name": "NextBloggingApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buddhablake/NextBloggingApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buddhablake/NextBloggingApp/issues"
+  },
+  "homepage": "https://github.com/buddhablake/NextBloggingApp#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "mongoose": "^5.9.27",
+    "next": "^9.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

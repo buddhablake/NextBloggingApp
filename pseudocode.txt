@@ -1,0 +1,18 @@
+Simple blogging app
+
+User story
+-A user can visit the site and see a feed of blog posts written by others users displayed in reverse chronological order.
+-A user can register for the site
+  -the users password is encrypted
+  -once the user signs up they are automatically logged in and their session persists until the hit logout.
+-Once registered and logged in a user can create a blog post.
+  -The user can edit or delete the blog post as they please.
+-A registered user can click "my posts" and be taken to a page that displays a list of their posts.
+-A registered user can logout.
+
+Technologies:
+-React
+-Next
+-React Context API
+-React Hooks
+-MongoDB 
