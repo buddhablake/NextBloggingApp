@@ -1,6 +1,7 @@
 import PostForm from "../../components/PostForm";
 
 const NewPost = () => {
+  //Create conditonal logic to fix "title" error
   return (
     <div>
       <h2 className="text-4xl text-center pt-12">Create a new post</h2>
