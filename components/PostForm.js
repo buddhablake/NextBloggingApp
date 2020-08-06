@@ -1,24 +1,40 @@
 import useForm from "../utils/useForm";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PostContext } from "../contexts/PostContext";
 import axios from "axios";
+// import { useRouter } from "next/router";
 
-const PostForm = () => {
+const PostForm = ({ buttonValue, post, newPost }) => {
   const [values, setValues, handleChange] = useForm();
   const { posts, setPosts } = useContext(PostContext);
 
+  useEffect(() => {
+    setValues(post);
+  }, []);
+
   const createPost = (e) => {
     e.preventDefault();
-    axios
-      .post("/api/posts", values)
-      .then((res) => {
-        setPosts((posts) => [...posts, res.data.data]);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
 
-    console.log(values);
+    if (newPost) {
+      axios
+        .post("/api/posts", values)
+        .then((res) => {
+          setPosts((posts) => [...posts, res.data.data]);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      axios
+        .put("/api/posts/" + values._id, values)
+        .then((res) => {
+          setPosts((posts) => [...posts, res.data.data]);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+
     setValues({});
   };
 
@@ -44,7 +60,7 @@ const PostForm = () => {
         onChange={handleChange}
         value={values.author || ""}
       />
-      <input type="submit" />
+      <input type="submit" value={buttonValue} />
     </form>
   );
 };

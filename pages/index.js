@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { PostContext } from "../contexts/PostContext";
-import PostForm from "../components/PostForm";
 
 const Index = () => {
   const { posts, setPosts } = useContext(PostContext);
@@ -9,7 +8,7 @@ const Index = () => {
   return (
     <div>
       <h1>Index</h1>
-      <PostForm />
+
       <div className="grid grid-cols-3 justify-center items-center text-center p-12">
         {posts
           ? posts.map((post, index) => {
