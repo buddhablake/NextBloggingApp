@@ -28,7 +28,17 @@ const PostForm = ({ buttonValue, post, newPost }) => {
       axios
         .put("/api/posts/" + values._id, values)
         .then((res) => {
-          setPosts((posts) => [...posts, res.data.data]);
+          //retrieves the index position of the edited post
+          const indexValue = posts.findIndex((index) => index._id === post._id);
+
+          // creates a temporary copy of the posts array
+          const updatedPosts = [...posts];
+
+          //removes the previous version of the now updated post from the array
+          updatedPosts.splice(indexValue, 1);
+
+          //sets the value of posts equal to our updated array and adds in the updated post sent back from the database
+          setPosts((posts) => [res.data.data, ...updatedPosts]);
         })
         .catch((err) => {
           console.log(err.message);
