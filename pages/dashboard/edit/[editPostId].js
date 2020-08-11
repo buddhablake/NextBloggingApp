@@ -1,34 +1,45 @@
 import PostForm from "../../../components/PostForm";
-import { useRouter } from "next/router";
 import { useEffect, useContext, useState } from "react";
 import { PostContext } from "../../../contexts/PostContext";
 
-const EditPost = () => {
-  const router = useRouter();
-  let { editPostId } = router.query;
+const EditPost = ({ editPostId }) => {
   const { posts, setPosts } = useContext(PostContext);
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState({ loading: true, data: null });
 
   useEffect(() => {
+    if (!posts.length) {
+      return;
+    }
+
+    console.log(posts.length);
     posts.find((post) => {
       if (post._id === editPostId) {
-        setPost(post);
+        setPost({ loading: false, data: post });
       }
     });
-  }, [{ editPostId }, { posts }]);
+  }, [posts]);
 
   return (
     <div>
-      <h2 className="text-4xl text-center pt-12">Update post</h2>
-      {editPostId && posts.length && post ? (
-        <PostForm buttonValue={"Update Post"} post={post} />
+      {post.loading ? (
+        <div className="flex items-center justify-center h-64">
+          <div className="text-3xl">Loading...</div>
+        </div>
       ) : (
-        <div>Loading...</div>
+        <div>
+          <h2 className="text-4xl text-center pt-12">Update post</h2>
+          <PostForm buttonValue={"Update Post"} post={post.data} />
+        </div>
       )}
     </div>
   );
 };
 
-export default EditPost;
+EditPost.getInitialProps = async ({ query }) => {
+  console.log(query);
+  return {
+    editPostId: query.editPostId,
+  };
+};
 
-//
+export default EditPost;

@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { PostContext } from "../contexts/PostContext";
 
-const Index = () => {
+const Index = ({ hey }) => {
   const { posts, setPosts } = useContext(PostContext);
-  console.log(posts);
 
   return (
     <div>
